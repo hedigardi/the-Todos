@@ -4,11 +4,24 @@ import AddTodoForm from './components/AddTodoForm';
 import './App.css';
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState( JSON.parse(localStorage.getItem("todos") || []));
 
   useEffect(() => {
-    fetchTodos();
+    try {
+      const storedTodos = localStorage.getItem('todos');
+      if (storedTodos) {
+        setTodos(JSON.parse(storedTodos));
+      } else {
+        fetchTodos();
+      }
+    } catch (error) {
+      console.error('Error parsing stored todos:', error);
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const fetchTodos = async () => {
     try {
@@ -41,10 +54,20 @@ function App() {
     setTodos(updatedTodos);
   };
 
+  const sortTodos = () => {
+    const sortedTodos = [...todos].sort((a, b) => {
+      if (a.text < b.text) return -1;
+      if (a.text > b.text) return 1;
+      return 0;
+    });
+    setTodos(sortedTodos);
+  };
+
   return (
     <div className="App">
       <h1>Todo App</h1>
       <AddTodoForm addTodo={addTodo} />
+      <button onClick={sortTodos}>Sort alphabetically</button>
       <TodoList
         todos={todos}
         removeTodo={removeTodo}
