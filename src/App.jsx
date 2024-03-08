@@ -67,7 +67,7 @@ function App() {
     <div className="App">
       <h1>Todo App</h1>
       <AddTodoForm addTodo={addTodo} />
-      <button onClick={sortTodos}>Sort alphabetically</button>
+      <button onClick={sortTodos} className='btn-sort'>Sort alphabetically</button>
       <TodoList
         todos={todos}
         removeTodo={removeTodo}

@@ -9,15 +9,15 @@ function TodoItem({ todo, removeTodo, updateTodo }) {
 
   return (
     <li>
+      <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+        {todo.text}
+      </span>
       <input
         type="checkbox"
         checked={todo.completed}
         onChange={handleCheckboxChange}
       />
-      <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-        {todo.text}
-      </span>
-      <button onClick={handleRemove}>Delete</button>
+      <button onClick={handleRemove} className="btn-delete">Delete</button>
     </li>
   );
 }

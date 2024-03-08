@@ -1,3 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: #d4e5e9;
+  font-size: 1.1rem;
+  font-family: 'Quicksand', sans-serif;
+  color: #083c47;
+  height: 100%;
+}
+
+h1 {
+  margin-top: 2rem;
+}
+
 .App {
   text-align: center;
 }
@@ -32,7 +51,86 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+form {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+input {
+  border: none;
+  background: #e3ecee;
+  padding: 0 1.5em;
+  font-size: initial;
+  height: 2rem;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+button {
+  padding: 0 1.3rem;
+  border: none;
+  background: #26c769;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 10px;
+  height: 2rem;
+  cursor: pointer;
+  transition: background .2s ease-out;
+}
+
+button:hover {
+  background: #109764;
+}
+
+.btn-delete {
+  padding: 0 1.3rem;
+  border: none;
+  background: #d63737;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 10px;
+  height: 2rem;
+  cursor: pointer;
+  transition: background .2s ease-out;
+}
+
+.btn-delete:hover {
+  background: #ac1616;
+}
+
+.btn-sort {
+  padding: 0 1.3rem;
+  border: none;
+  background: #37b9d6;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 10px;
+  height: 2rem;
+  cursor: pointer;
+  transition: background .2s ease-out;
+}
+
+.btn-sort:hover {
+  background: #0788a5;
+}
+
+li {
+  margin: 1rem;
+  list-style-type: none;
 }
