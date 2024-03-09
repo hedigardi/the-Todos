@@ -1,41 +1,43 @@
 import { useState, useEffect } from 'react';
 import TodoList from './components/TodoList';
 import AddTodoForm from './components/AddTodoForm';
-import { fetchTodos } from './services/AppServices';
 import './App.css';
 
 function App() {
-  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos") || []));
+  const storedTodos = localStorage.getItem("todos");
+  const initialTodos = storedTodos ? JSON.parse(storedTodos) : [];
+  const [todos, setTodos] = useState(initialTodos);
 
   useEffect(() => {
-    try {
-      const storedTodos = localStorage.getItem('todos');
-      if (storedTodos) {
-        setTodos(JSON.parse(storedTodos));
-      } else {
-        fetchTodos();
-      }
-    } catch (error) {
-      console.error('Error parsing stored todos:', error);
+  try {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos !== null && storedTodos !== '') {
+      setTodos(JSON.parse(storedTodos));
+    } else {
+      fetchTodos();
     }
+  } catch (error) {
+    console.error('Error parsing stored todos:', error);
+  }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchTodos();
-        setTodos(data);
-      } catch (error) {
-        console.error('Error fetching todos:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const fetchTodos = async () => {
+    try {
+      const response = await fetch('https://random-todos.azurewebsites.net/api/todos', {
+        headers: {
+          'x-api-key': '$2a$10$T6Xd4gMJLTrNeo58vWncdOM/EltSOicKlLMyZCzyJXURlicV6fuoy'
+        }
+      });
+      const data = await response.json();
+      setTodos(data);
+    } catch (error) {
+      console.error('Error fetching todos:', error);
+    }
+  };
 
   const addTodo = (text) => {
     const newTodo = { id: Date.now(), text, completed: false };
@@ -78,3 +80,4 @@ function App() {
 }
 
 export default App;
+
