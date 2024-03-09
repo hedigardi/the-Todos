@@ -6,19 +6,16 @@
 
 html,
 body {
-  background: #d4e5e9;
+  background: linear-gradient(to right, #e7ebec, #ceeaf1);
   font-size: 1.1rem;
   font-family: 'Quicksand', sans-serif;
   color: #083c47;
   height: 100%;
 }
 
-h1 {
-  margin-top: 2rem;
-}
-
 .App {
   text-align: center;
+  margin-top: 2rem;
 }
 
 .App-logo {
@@ -65,10 +62,14 @@ form {
 
 input {
   border: none;
-  background: #e3ecee;
+  background: #dee6e7;
   padding: 0 1.5em;
   font-size: initial;
   height: 2rem;
+  width: 300px;
+  border-radius: 30px;
+  border: solid 1px;
+  border-color: #083c47;
 }
 
 input[type="checkbox"] {
@@ -82,7 +83,7 @@ input[type="checkbox"] {
 button {
   padding: 0 1.3rem;
   border: none;
-  background: #26c769;
+  background: #083c47;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -90,16 +91,17 @@ button {
   height: 2rem;
   cursor: pointer;
   transition: background .2s ease-out;
+  border-radius: 30px;
 }
 
 button:hover {
-  background: #109764;
+  background: #0c6070;
 }
 
 .btn-delete {
   padding: 0 1.3rem;
   border: none;
-  background: #d63737;
+  background: #d65e5e;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -110,27 +112,55 @@ button:hover {
 }
 
 .btn-delete:hover {
-  background: #ac1616;
+  background: #9e5c5c;
 }
 
 .btn-sort {
   padding: 0 1.3rem;
   border: none;
-  background: #37b9d6;
-  color: white;
+  background: #b4c6ca;
+  color: #083c47;
   text-transform: uppercase;
   font-weight: bold;
   margin-left: 10px;
   height: 2rem;
+  width: 250px;
   cursor: pointer;
   transition: background .2s ease-out;
 }
 
 .btn-sort:hover {
-  background: #0788a5;
+  background: #bbd3d8;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 li {
-  margin: 1rem;
+  margin: 0.5rem;
+  padding: 1rem 1rem;
   list-style-type: none;
+  background-color: #083c47;
+  color: white;
+  border-radius: 30px;
+  width: calc(50% - 2rem);
+  max-width: 450px;
+  min-width: 450px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+li span {
+  flex: 1;
+  text-align: left;
+}
+
+li button {
+  margin-left: 1rem;
 }

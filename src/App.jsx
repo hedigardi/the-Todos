@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import TodoList from './components/TodoList';
 import AddTodoForm from './components/AddTodoForm';
+import { fetchTodos } from './services/AppServices';
 import './App.css';
 
 function App() {
-  const [todos, setTodos] = useState( JSON.parse(localStorage.getItem("todos") || []));
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos") || []));
 
   useEffect(() => {
     try {
@@ -23,19 +24,18 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const fetchTodos = async () => {
-    try {
-      const response = await fetch('https://random-todos.azurewebsites.net/api/todos', {
-        headers: {
-          'x-api-key': '$2a$10$T6Xd4gMJLTrNeo58vWncdOM/EltSOicKlLMyZCzyJXURlicV6fuoy'
-        }
-      });
-      const data = await response.json();
-      setTodos(data);
-    } catch (error) {
-      console.error('Error fetching todos:', error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchTodos();
+        setTodos(data);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const addTodo = (text) => {
     const newTodo = { id: Date.now(), text, completed: false };
