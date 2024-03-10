@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import TodoList from './components/TodoList';
 import AddTodoForm from './components/AddTodoForm';
+import { fetchTodos } from './services/AppService';
 import './App.css';
 
 function App() {
@@ -9,35 +10,21 @@ function App() {
   const [todos, setTodos] = useState(initialTodos);
 
   useEffect(() => {
-  try {
-    const storedTodos = localStorage.getItem('todos');
-    if (storedTodos !== null && storedTodos !== '') {
-      setTodos(JSON.parse(storedTodos));
-    } else {
-      fetchTodos();
+    try {
+      const storedTodos = localStorage.getItem('todos');
+      if (storedTodos !== null && storedTodos !== '') {
+        setTodos(JSON.parse(storedTodos));
+      } else {
+        fetchTodos().then(data => setTodos(data)).catch(error => console.error('Error:', error));
+      }
+    } catch (error) {
+      console.error('Error parsing stored todos:', error);
     }
-  } catch (error) {
-    console.error('Error parsing stored todos:', error);
-  }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
-
-  const fetchTodos = async () => {
-    try {
-      const response = await fetch('https://random-todos.azurewebsites.net/api/todos', {
-        headers: {
-          'x-api-key': '$2a$10$T6Xd4gMJLTrNeo58vWncdOM/EltSOicKlLMyZCzyJXURlicV6fuoy'
-        }
-      });
-      const data = await response.json();
-      setTodos(data);
-    } catch (error) {
-      console.error('Error fetching todos:', error);
-    }
-  };
 
   const addTodo = (text) => {
     const newTodo = { id: Date.now(), text, completed: false };
@@ -80,4 +67,3 @@ function App() {
 }
 
 export default App;
-
