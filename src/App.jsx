@@ -10,16 +10,21 @@ function App() {
   const [todos, setTodos] = useState(initialTodos);
 
   useEffect(() => {
-    try {
-      const storedTodos = localStorage.getItem('todos');
-      if (storedTodos !== null && storedTodos !== '') {
-        setTodos(JSON.parse(storedTodos));
-      } else {
-        fetchTodos().then(data => setTodos(data)).catch(error => console.error('Error:', error));
+    const fetchAndSetTodos = async () => {
+      try {
+        const storedTodos = localStorage.getItem('todos');
+        if (storedTodos !== null && storedTodos !== '') {
+          setTodos(JSON.parse(storedTodos));
+        } else {
+          const data = await fetchTodos();
+          setTodos(data);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error parsing stored todos:', error);
-    }
+    };
+
+    fetchAndSetTodos();
   }, []);
 
   useEffect(() => {

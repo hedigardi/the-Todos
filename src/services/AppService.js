@@ -1,8 +1,8 @@
 const fetchTodos = async () => {
   try {
-    const response = await fetch('https://random-todos.azurewebsites.net/api/todos', {
+    const response = await fetch('https://random-todos.azurewebsites.net/todos?apikey=%242a%2410%24T6Xd4gMJLTrNeo58vWncdOM%2FEltSOicKlLMyZCzyJXURlicV6fuoy&amount=5&randomdone=false', {
       headers: {
-        'x-api-key': '$2a$10$T6Xd4gMJLTrNeo58vWncdOM/EltSOicKlLMyZCzyJXURlicV6fuoy'
+        'Accept': 'application/json'
       }
     });
     if (!response.ok) {
