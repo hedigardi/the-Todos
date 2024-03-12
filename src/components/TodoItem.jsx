@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function TodoItem({ todo, removeTodo, updateTodo }) {
   const [completed, setCompleted] = useState(todo.completed);
@@ -8,8 +8,9 @@ function TodoItem({ todo, removeTodo, updateTodo }) {
   };
 
   const handleCheckboxChange = () => {
-    setCompleted(!completed);
-    updateTodo(todo.id, { completed: !completed });
+    const updatedCompleted = !completed;
+    setCompleted(updatedCompleted);
+    updateTodo(todo.id, { completed: updatedCompleted });
   };
 
   return (

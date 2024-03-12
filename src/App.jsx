@@ -5,26 +5,27 @@ import { fetchTodos } from './services/AppService';
 import './App.css';
 
 function App() {
-  const storedTodos = localStorage.getItem("todos");
-  const initialTodos = storedTodos ? JSON.parse(storedTodos) : [];
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState(() => {
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
 
   useEffect(() => {
-    const fetchAndSetTodos = async () => {
-      try {
-        const storedTodos = localStorage.getItem('todos');
-        if (storedTodos !== null && storedTodos !== '') {
-          setTodos(JSON.parse(storedTodos));
-        } else {
-          const data = await fetchTodos();
-          setTodos(data);
-        }
-      } catch (error) {
-        console.error('Error:', error);
+  const fetchAndSetTodos = async () => {
+    try {
+      const storedTodos = localStorage.getItem('todos');
+      if (storedTodos !== null && storedTodos.trim() !== '') {
+        setTodos(JSON.parse(storedTodos));
+      } else {
+        const data = await fetchTodos();
+        setTodos(data);
       }
-    };
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-    fetchAndSetTodos();
+  fetchAndSetTodos();
   }, []);
 
   useEffect(() => {
