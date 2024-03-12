@@ -9,7 +9,7 @@ const fetchTodos = async () => {
       throw new Error('Failed to fetch todos');
     }
     const data = await response.json();
-    return data;
+    return data.todos;
   } catch (error) {
     console.error('Error fetching todos:', error);
     throw error;
