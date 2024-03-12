@@ -31,10 +31,10 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = (text) => {
-    const newTodo = { id: Date.now(), text, completed: false };
+  const addTodo = (task) => {
+    const newTodo = { id: Date.now(), task, completed: false };
     setTodos([...todos, newTodo]);
-  };
+};
 
   const removeTodo = (id) => {
     const updatedTodos = todos.filter(todo => todo.id !== id);
@@ -55,8 +55,8 @@ function App() {
 
   const sortTodos = () => {
     const sortedTodos = [...todos].sort((a, b) => {
-      if (a.text < b.text) return -1;
-      if (a.text > b.text) return 1;
+      if (a.task < b.task) return -1;
+      if (a.task > b.task) return 1;
       return 0;
     });
     setTodos(sortedTodos);

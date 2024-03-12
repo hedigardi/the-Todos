@@ -20,7 +20,7 @@ function TodoItem({ todo, removeTodo, updateTodo }) {
         onChange={handleCheckboxChange}
       />
       <span style={{ textDecoration: completed ? 'line-through' : 'none' }}>
-        {todo.text}
+        {todo.task}
       </span>
       <button onClick={handleRemove} className="btn-delete">Delete</button>
     </li>
