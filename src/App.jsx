@@ -37,9 +37,14 @@ function App() {
   };
 
   const updateTodo = (id, updatedTodo) => {
-    const updatedTodos = todos.map(todo => 
+    const updatedTodos = todos.map(todo =>
       todo.id === id ? { ...todo, ...updatedTodo } : todo
     );
+    if (updatedTodo.completed) {
+      const completedTodo = updatedTodos.find(todo => todo.id === id);
+      updatedTodos.splice(updatedTodos.indexOf(completedTodo), 1);
+      updatedTodos.push(completedTodo);
+    }
     setTodos(updatedTodos);
   };
 
@@ -56,7 +61,7 @@ function App() {
     <div className="App">
       <h1>Todo App</h1>
       <AddTodoForm addTodo={addTodo} />
-      <button onClick={sortTodos} className='btn-sort'>Sort alphabetically</button>
+      <button onClick={sortTodos} className='btn-sort'>Sort A - Z</button>
       <TodoList
         todos={todos}
         removeTodo={removeTodo}

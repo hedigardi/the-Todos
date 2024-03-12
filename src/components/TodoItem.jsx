@@ -1,20 +1,25 @@
+import React, { useState } from 'react';
+
 function TodoItem({ todo, removeTodo, updateTodo }) {
+  const [completed, setCompleted] = useState(todo.completed);
+
   const handleRemove = () => {
     removeTodo(todo.id);
   };
 
   const handleCheckboxChange = () => {
-    updateTodo(todo.id, { completed: !todo.completed });
+    setCompleted(!completed);
+    updateTodo(todo.id, { completed: !completed });
   };
 
   return (
-    <li>
+    <li className={completed ? 'completed' : ''}>
       <input
         type="checkbox"
-        checked={todo.completed}
+        checked={completed}
         onChange={handleCheckboxChange}
       />
-      <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+      <span style={{ textDecoration: completed ? 'line-through' : 'none' }}>
         {todo.text}
       </span>
       <button onClick={handleRemove} className="btn-delete">Delete</button>
