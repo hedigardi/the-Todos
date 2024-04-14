@@ -1,34 +1,18 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/gKtMps5t)
-# Todos
+# The Todos App V.1
+Welcome to the Todos App.
 
-En inlämningsuppgift för BCU. I denna uppgift skall ni alltså bygga en todo-lista i react. Ni har fått detta projekt som mall så att alla har någonting att utgå ifrån. Men, ingenting mer än själva projektet har gjorts. Nu skall ni, genom att använda alla koncept vi har pratat om hittills i kursen, skapa en todo-lista.
+<img src="https://github.com/hedigardi/westcoast-education/blob/main/content/images/website.jpg" alt="WestCoast Education Platform" width="650px">
 
-## API
-
-För att ni skall träna lite extra på att använda api:er kommer ni att använda er av följande api: https://random-todos.azurewebsites.net/api-docs/
-
-### Api key
-
-Api:t ovanför kräver att ni har en api-nyckel. Ni kan prova att göra era egna anrop genom att titta på dokumentationen till api:t. Eller om ni vill fokusera på uppgiften så finns det här en länk där ni kan skriva in er e-postadress för att få en api-nyckel eller hämta en glömd nyckel: https://sebastiantegel.github.io/random-todos-keys/
-
-## Krav för G
-
-- Skapa en hårdkodad lista med egna todos (Ni får denna från api:t)
-- Presentera listan på skärmen med kontroll, kanske med hjälp av en ul/li
-- Ni skall kunna ta bort en todo ur listan
-- Ni behöver använda minst en komponent
-- Använda localStorage för att spara er lista. Jag vill inte att allting börjar om från början varje siduppdatering :)
-- Bra struktur på er kod. Detta betyder självförklarande variabelnamn och funktionsnamn samt inga kommentarer.
-
-## Krav för VG
-
-- Samtliga punkter för G
-- Ni använder er av minst tre komponenter
-- Ni använder er av Lifting State Up
-- Ni skall kunna skriva in egna todos
-- Ni skall visa även klara händelser och kunna göra så att de blir "oklara" igen
-- Ni skall kunna sortera er lista på något sätt, hur och på vad är upp till er
-
-## Förslag
-
-Mitt förslag är att ni funderar över vilket betyg ni vill uppnå och börjar planera för de komponenter som behövs för just det. Fokusera på funktionalitet framför utseende. Såklart att ni får styla hur mycket ni vill, men det är funktionalitet jag kommer att bedöma i denna uppgift. 
+## Installation
+1. Clone the Todos App repository:
+   ```bash
+   git clone https://github.com/hedigardi/the-Todos.git
+    ```
+2. Install the dependencies:
+   ```bash
+   npm install
+    ```
+3. Start the application:
+   ```bash
+   npm run start
+    ```
